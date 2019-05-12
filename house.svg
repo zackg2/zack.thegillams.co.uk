@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="900" height="900" viewBox="0 -20 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+<defs>
+<pattern id="brick" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+<rect x="0" y="0" width="4" height="2" stroke-width="0.25" stroke="black" fill="yellow" />
+<rect x="-2" y="2" width="4" height="2" stroke-width="0.25" stroke="black" fill="yellow" />
+<rect x="2" y="2" width="4" height="2" stroke-width="0.25" stroke="black" fill="yellow" />
+</pattern>
+</defs>
+
+
+<rect x="0" y="-20" width="120" height="120" fill="lightblue" />
+<rect x="0" y="70" width="120" height="120" fill="green" />
+
+
+<circle cx="20" cy="0" r="8" fill="white" />
+<circle cx="28" cy="0" r="8" fill="white" />
+<circle cx="24" cy="-4" r="8" fill="white" />
+<circle cx="94" cy="-2" r="8" fill="white" />
+<circle cx="100" cy="-2" r="8" fill="white" />
+<circle cx="97" cy="-6" r="8" fill="white" />
+<circle cx="60" cy="-6" r="8" fill="yellow" />
+
+
+
+<path d="M 0 40 L 30 10 L 60 10 L 60 0 L 70 0 L 70 10 L 90 10 L 120 40 Z" fill="brown" />
+<path d="M 10 40 L 110 40 L 110 90 L 10 90 Z" fill="url(#brick)" />
+
+<path d="M 20 50 l 20 0 l 0 20 l -20 0 l 0 -20 z m 10 0 l 0 20 m -10 -10 l 20 0" stroke="black" stroke-width="1" fill="#9f9" />
+
+<path d="M 80 50 l 20 0 l 0 20 l -20 0 l 0 -20 z m 10 0 l 0 20 m -10 -10 l 20 0" stroke="black" stroke-width="1" fill="#9f9" />
+<rect x="55" y="70" width="10" height="20" fill="white" />
+<rect x="54" y="70" width="1" height="20" fill="black" />
+<rect x="54" y="69" width="12" height="1" />
+<rect x="65" y="70" width="1" height="20" fill="black" />
+<rect x="57" y="72" width="6" height="7" fill="#ccf" stroke="black" stroke-width="0.5"/>
+<rect x="59.75" y="72" width="0.5" height="7" fill="black" />
+<rect x="57" y="75.25" width="6" height="0.5" fill="black" />
+<rect x="62" y="80" width="3" height="0.7" fill="black"/>
+<rect x="55" y="91" width="10" height="10" fill="#542" />
+
+
+
+
+
+
+
+
+
+</svg>

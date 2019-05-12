@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="360" height="560" viewBox="0 0 18 28" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+
+
+
+
+
+
+
+
+<rect x="0" y="4" width="3" height="1" fill="black" />
+<rect x="6" y="4" width="3" height="1" fill="black" />
+<rect x="3" y="4" width="3" height="5" fill="blue" />
+<rect x="3" y="9" width="3" height="4" fill="green" />
+
+<rect x="4" y="10" width="1" height="3" fill="white" />
+
+
+
+
+<rect x="4" y="3" width="1" height="1" fill="pink" />
+
+<circle cx="4.5" cy="2" r="1.5" fill="red" />
+
+
+</svg>
