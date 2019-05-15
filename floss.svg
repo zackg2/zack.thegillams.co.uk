@@ -17,7 +17,7 @@
     }
   </style>
 
-  <rect      x="0" y="0" width="200" height="200" fill="black" />
+
 
 
 <circle cx="100"  cy="20" r="8" fill="red">
@@ -78,7 +78,7 @@
 
 
 
-     </path>
+    
 
 
 
