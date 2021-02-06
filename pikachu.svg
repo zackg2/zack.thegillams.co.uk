@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="900" height="900" viewBox="0 0 100 150" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="900" height="900" viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
   <clipPath id="clipHead">
     <circle class="head-clip" cx="50" cy="50" r="24.5" fill="green"  />
   </clipPath>
+<path d="M 60 110 L 87 105 L 85 95 L 100 91 L 97 76 L 142 79 L 147 44 L 82 51 L 89 86 L 80 91 L 81 101 L 60 105 Z" fill="yellow" stroke="transparent"/>
 
+<path d="M 60 110 L 87 105 L 85 95 L 100 91 L 97 76 L 142 79 L 90 70 L 94 86 L 80 91 L 81 101 L 60 105 Z" fill="#DAA520" stroke="transparent"/>
+
+<path d="M 60 110 L 87 105 L 85 97 l -0.5 -3 l -0.5 3 l -0.5 -2 l -0.5 3 l -0.5 -3 l -0.5 2 L 80 91 L 81 101 L 60 105 Z" fill="#964B00" stroke="transparent"/>
+
+<path d="M 60 110 L 87 105 L 85 95 L 100 91 L 97 76 L 142 79 L 147 44 L 82 51 L 89 86 L 80 91 L 81 101 L 60 105 Z" fill="transparent" stroke="black"/>
   <ellipse class="left-foot" cx="35" cy="115" rx="5" ry="15" fill="yellow" stroke="black" transform="rotate(45 35 115)"/>
   <ellipse class="right-foot" cx="65" cy="115" rx="5" ry="15" fill="yellow" stroke="black" transform="rotate(-45 65 115)"/>
 
