@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: HCo Gotham SSm, Helvetica Neue, Helvetica, Arial, Lucida Grande,
+    sans-serif;
+}
+
+.Header {
+  background-color: #dee1e3;
+
+  font-weight: bolder;
+  font-size: large;
+}
+
+.headerrow {
+  display: flex;
+}
+
+.headerrow > div {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 2px solid transparent;
+}
+.headerrow.gray > div {
+  filter: grayscale(100%);
+}
+.headerrow.gray > div:hover {
+  filter: grayscale(0%);
+}
+.headerrow.grow > div,
+.searchbox {
+  flex-grow: 1;
+}
+.headerrow.borders > div:hover {
+  border-bottom: 2px solid black;
+}
+
+.search {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #777777;
+  display: flex;
+  flex-grow: 1;
+}
+
+.search input {
+  flex-grow: 1;
+  border: none;
+  background-color: transparent;
+}
