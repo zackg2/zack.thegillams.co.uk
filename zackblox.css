@@ -47,3 +47,54 @@ body {
   border: none;
   background-color: transparent;
 }
+
+.avatar img {
+  border-radius: 1000px;
+  overflow: hidden;
+  box-shadow: 4px 4px 4px #30402b9e;
+}
+
+.me {
+  display: flex;
+  align-items: center;
+}
+.username {
+  font-size: 30px;
+  font-weight: bolder;
+  border: none;
+  outline: none;
+}
+.avatar {
+  padding: 10px;
+}
+.titlerowtop {
+  font-size: 24px;
+  font-weight: bolder;
+}
+.titlerow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.titlerowbottom {
+  font-weight: bold;
+  font-size: 20px;
+}
+.friends {
+  display: flex;
+  justify-content: flex-start;
+}
+.cardavatar img {
+  border-radius: 1000px;
+  overflow: hidden;
+  box-shadow: 4px 4px 4px #30402b9e;
+}
+.cardavatar {
+  padding: 10px;
+}
+.card {
+  padding: 10px;
+}
+.cardname {
+  padding: 10px;
+}
