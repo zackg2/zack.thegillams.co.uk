@@ -80,7 +80,8 @@ body {
   font-weight: bold;
   font-size: 20px;
 }
-.friends {
+.friends,
+.games {
   display: flex;
   justify-content: flex-start;
 }
@@ -105,4 +106,23 @@ body {
 }
 .→ {
   font-size: xx-large;
+}
+
+.games .cardavatar img {
+  width: 150px;
+  height: 150px;
+}
+.games .feedback img {
+  width: 60px;
+  height: 50px;
+  vertical-align: middle;
+}
+.games .card {
+  width: 150px;
+}
+.games .cardname {
+  font-size: x-large;
+}
+.cardname {
+  font-weight: bold;
 }
