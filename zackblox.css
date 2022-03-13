@@ -94,7 +94,15 @@ body {
 }
 .card {
   padding: 10px;
+  width: 120px;
 }
 .cardname {
   padding: 10px;
+}
+.home {
+  max-width: 970px;
+  width: 100%;
+}
+.→ {
+  font-size: xx-large;
 }
