@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #story {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="story">
+      <h1>
+        <span class="name">name</span> <span class="animal">animal</span>'s
+        <span class="adjective">great</span>
+      </h1>
+    </div>
+    <script>
+      const story = document.getElementById("story");
+
+      const name = prompt("enter a name");
+      for (const el of document.querySelectorAll(".name")) {
+        el.textContent = name;
+      }
+
+      const animal = prompt("enter an animal");
+      for (const el of document.querySelectorAll(".animal")) {
+        el.textContent = animal;
+      }
+
+      const adjective = prompt("enter an adjective for adventure");
+      for (const el of document.querySelectorAll(".adjective")) {
+        el.textContent = adjective;
+      }
+
+      story.style.display = "block";
+    </script>
+  </body>
+</html>
