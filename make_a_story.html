@@ -15,26 +15,28 @@
     <div id="story">
       <h1>
         <span class="name">name</span> <span class="animal">animal</span>'s
-        <span class="adjective">great</span>
+        <span class="adjective">great</span> adventure
       </h1>
+      <p>
+        At the crack of dawn,<span class="name">name</span> was already
+        <span class="verbofspeed"></span> across the Arctic ocean and he was
+        exited to see his new friends.
+      </p>
     </div>
     <script>
       const story = document.getElementById("story");
 
-      const name = prompt("enter a name");
-      for (const el of document.querySelectorAll(".name")) {
-        el.textContent = name;
+      function word(qn, sel) {
+        const answer = prompt(qn);
+        for (const el of document.querySelectorAll(sel)) {
+          el.textContent = answer;
+        }
       }
 
-      const animal = prompt("enter an animal");
-      for (const el of document.querySelectorAll(".animal")) {
-        el.textContent = animal;
-      }
-
-      const adjective = prompt("enter an adjective for adventure");
-      for (const el of document.querySelectorAll(".adjective")) {
-        el.textContent = adjective;
-      }
+      word("enter a name", ".name");
+      word("enter an animal", ".animal");
+      word("enter an adjective for adventure", ".adjective");
+      word("enter a verb of speed ending in -ing", ".verbofspeed");
 
       story.style.display = "block";
     </script>
