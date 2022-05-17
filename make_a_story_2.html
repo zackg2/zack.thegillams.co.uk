@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mas2</title>
+    <style>
+      #story {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="story">
+      <h1>winter cavern</h1>
+      <p>
+        It has been many years since <span class="old_name"></span>'s time and
+        the tiny village of <span class="tiny_village"></span> has grown intoa
+        huge,crowded town known as <span class="town_name"></span>. These were
+        <span class="happy"></span> years, until
+        <span class="worring"></span> tales of dissapering children started to
+        roam <span class="town_name"></span>.People say the mysterious
+        child-taker goes by the name of <span class="evil_character"></span>,
+        who stelithly sneaks in just after midnight and when the sun rises the
+        next morning, a child is always mising.
+      </p>
+      <p>
+        One faitful night, <span class="evil_character"></span> crawled in
+        <span class="main"></span>'s house undetected, as everyone slept.When
+        <span class="main"></span> woke, earlier then usual,he imediatly noticed
+        that his beloved sister, <span class="sister"></span>, had vanashed!
+        Crushed,he secretly stuffed his pocket with bread and nuts and
+        stealthily crept out the house. He trudged through the thick,rough snow,
+        as the rushing blizard swooped at him.He went on towards what seamed
+        like an endless mountian side.
+      </p>
+      <p>
+        As <span class="main"></span> <span class="rolled"></span> through the
+        furious blizard, he heard the high-pitched screached screached of a fox
+        haning from the fox's mouth was a mesterious leather parcle.ontop, was a
+        note saying "use this.". Filled with exitement,
+        <span class="main"></span> ripped open the parcel and found a scorching
+        ,curved knife and <span class="struggled"></span> up the mamouth,jaged
+        mountian.
+      </p>
+      <p></p>
+    </div>
+    <script>
+      const story = document.getElementById("story");
+
+      function word(qn, sel) {
+        const answer = prompt(qn);
+        for (const el of document.querySelectorAll(sel)) {
+          el.textContent = answer;
+        }
+      }
+      word("enter a character that has preiviously died.", ".old_name");
+      word("make up a tiny village", ".tiny_village");
+      word("enter a town name", ".town_name");
+      word("enter a adjective for sad", ".happy");
+      word("enter a synynom for worriing", "worring");
+      word("enter an evil charachter", "evil_character");
+      word("enter a main character(a boy)", ".main");
+      word("enter a sister for the main character");
+      word("enter rolled or struggled", ".rolled");
+      word(
+        "enter rolled or struggled but not the one you preiviously chose",
+        ".struggled"
+      );
+      story.style.display = "block";
+    </script>
+  </body>
+</html>
