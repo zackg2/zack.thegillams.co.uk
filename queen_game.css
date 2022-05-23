@@ -10,10 +10,18 @@ body {
   padding: 3px;
   flex-grow: 1;
 }
+.tile.green {
+  background-color: chartreuse;
+  color: black;
+}
+.tile.purple {
+  background-color: rgb(112, 11, 99);
+  color: black;
+}
 .player {
   display: inline-block;
   border-radius: 100px;
-  background-color: lightgreen;
+  background-color: peru;
   color: black;
   width: 1em;
   height: 1em;
