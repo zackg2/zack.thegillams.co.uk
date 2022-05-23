@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: bold;
+  color: aqua;
+  background-color: black;
+}
+.tile {
+  border: 1px solid lightblue;
+  padding: 3px;
+  flex-grow: 1;
+}
+.player {
+  display: inline-block;
+  border-radius: 100px;
+  background-color: lightgreen;
+  color: black;
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  margin-left: 2px;
+}
