@@ -1,0 +1,21 @@
+body,
+html {
+  border: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.lane {
+  background-color: gray;
+  height: 8vw;
+  margin-top: 1vw;
+  width: 100vw;
+  position: relative;
+}
+.zombie {
+  position: absolute;
+  top: 1vw;
+  height: 6vw;
+  width: 6vw;
+  background-color: green;
+}
