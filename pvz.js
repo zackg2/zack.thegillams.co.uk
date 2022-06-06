@@ -1,13 +1,18 @@
 const zombies = [];
 const lanes = [];
 const spaces = [];
+let credits = 20;
 const TPS = 10;
+
+let creditsel;
 
 function rand(low, high) {
   return low + Math.floor(Math.random() * (high - low));
 }
 
 function tick() {
+  credits = credits + 0.1;
+  creditsel.textContent = Math.floor(credits);
   for (const zombie of zombies) {
     zombie.tick();
     if (zombie.progress > 104) {
@@ -22,6 +27,7 @@ function eatBrainz() {
 
 let ticker;
 function start() {
+  creditsel = document.getElementById("credits");
   lanes.push(...document.querySelectorAll(".lane"));
 
   for (let laneno = 0; laneno < lanes.length; laneno++) {
@@ -43,16 +49,16 @@ function start() {
 }
 
 class Zombie {
-  lane = -1;
+  laneno = -1;
   speed = 100 / (60 * TPS);
   progress = 0;
   div = document.createElement("div");
 
   constructor() {
-    this.lane = rand(0, lanes.length - 1);
+    this.laneno = rand(0, lanes.length - 1);
     this.div.className = "zombie";
     this.update();
-    lanes[this.lane].appendChild(this.div);
+    lanes[this.laneno].appendChild(this.div);
   }
 
   update() {
@@ -66,17 +72,43 @@ class Zombie {
 }
 
 class Space {
-  lane = -1;
-  space = -1;
+  laneno = -1;
+  spaceno = -1;
   div = document.createElement("div");
+  turret = null;
 
   constructor(laneno, spaceno) {
-    this.lane = laneno;
-    this.space = spaceno;
+    this.laneno = laneno;
+    this.spaceno = spaceno;
     this.div.className = "space";
-    this.div.style.left = `${this.space * 10}%`;
+    this.div.onclick = this.clicked.bind(this);
+    this.div.style.left = `${this.spaceno * 10}%`;
     this.update();
-    lanes[this.lane].appendChild(this.div);
+    lanes[this.laneno].appendChild(this.div);
+  }
+
+  update() {}
+
+  clicked() {
+    if (!this.turret) {
+      this.turret = new Turret(this);
+    }
+  }
+
+  tick() {
+    this.update();
+  }
+}
+
+class Turret {
+  space = null;
+  div = document.createElement("div");
+
+  constructor(space) {
+    this.space = space;
+    this.div.className = "turret";
+    this.update();
+    this.space.div.appendChild(this.div);
   }
 
   update() {}
