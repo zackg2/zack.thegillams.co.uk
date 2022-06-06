@@ -90,7 +90,8 @@ class Space {
   update() {}
 
   clicked() {
-    if (!this.turret) {
+    if (!this.turret && credits >= 10) {
+      credits -= 10;
       this.turret = new Turret(this);
     }
   }
