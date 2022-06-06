@@ -38,3 +38,12 @@ html {
   background-color: yellowgreen;
   background-size: 100% 100%;
 }
+
+.projectile {
+  position: absolute;
+  top: 3vw;
+  height: 2vw;
+  width: 2vw;
+  background-image: url("zombie.png");
+  background-size: 100% 100%;
+}

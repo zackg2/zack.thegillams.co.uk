@@ -1,6 +1,7 @@
 const zombies = [];
 const lanes = [];
 const spaces = [];
+const projectiles = [];
 let credits = 20;
 const TPS = 10;
 
@@ -13,6 +14,14 @@ function rand(low, high) {
 function tick() {
   credits = credits + 0.1;
   creditsel.textContent = Math.floor(credits);
+  for (const projectile of projectiles) {
+    projectile.tick();
+  }
+  for (const lane of spaces) {
+    for (const space of lane) {
+      space.tick();
+    }
+  }
   for (const zombie of zombies) {
     zombie.tick();
     if (zombie.progress > 104) {
@@ -98,11 +107,15 @@ class Space {
 
   tick() {
     this.update();
+    if (this.turret) {
+      this.turret.tick();
+    }
   }
 }
 
 class Turret {
   space = null;
+  counter = 0;
   div = document.createElement("div");
 
   constructor(space) {
@@ -114,7 +127,44 @@ class Turret {
 
   update() {}
 
+  fire() {
+    const projectile = new Projectile(
+      this.space.laneno,
+      this.space.spaceno * 10
+    );
+    projectiles.push(projectile);
+  }
+
   tick() {
+    this.counter = this.counter + 1;
+    if (this.counter >= 20) {
+      this.counter = 0;
+      this.fire();
+    }
+    this.update();
+  }
+}
+
+class Projectile {
+  laneno = -1;
+  speed = 300 / (60 * TPS);
+  progress = 0;
+  div = document.createElement("div");
+
+  constructor(laneno, progress) {
+    this.laneno = laneno;
+    this.progress = progress;
+    this.div.className = "projectile";
+    this.update();
+    lanes[this.laneno].appendChild(this.div);
+  }
+
+  update() {
+    this.div.style.left = `${this.progress}%`;
+  }
+
+  tick() {
+    this.progress += this.speed;
     this.update();
   }
 }
