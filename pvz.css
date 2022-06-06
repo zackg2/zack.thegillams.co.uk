@@ -20,3 +20,12 @@ html {
   background-image: url("zombie.png");
   background-size: 100% 100%;
 }
+
+.space {
+  position: absolute;
+  top: 0;
+  height: 8vw;
+  width: 8vw;
+  background-color: black;
+  background-size: 100% 100%;
+}
