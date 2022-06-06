@@ -61,6 +61,7 @@ class Zombie {
   laneno = -1;
   speed = -100 / (60 * TPS);
   x = 100;
+  hp = 5;
   div = document.createElement("div");
 
   constructor() {
@@ -72,6 +73,20 @@ class Zombie {
 
   update() {
     this.div.style.left = `${this.x}%`;
+  }
+  hit() {
+    this.hp = this.hp - 1;
+    if (this.hp <= 0) {
+      this.destroy();
+    }
+  }
+
+  destroy() {
+    const pos = zombies.indexOf(this);
+    if (pos >= 0) {
+      zombies.splice(pos, 1);
+    }
+    this.div.parentElement.removeChild(this.div);
   }
 
   tick() {
@@ -130,7 +145,7 @@ class Turret {
   fire() {
     const projectile = new Projectile(
       this.space.laneno,
-      this.space.spaceno * 10
+      this.space.spaceno * 10 + 5
     );
     projectiles.push(projectile);
   }
@@ -163,8 +178,22 @@ class Projectile {
     this.div.style.left = `${this.x}%`;
   }
 
+  destroy() {
+    const pos = projectiles.indexOf(this);
+    if (pos >= 0) {
+      projectiles.splice(pos, 1);
+    }
+    this.div.parentElement.removeChild(this.div);
+  }
+
   tick() {
     this.x += this.speed;
+    for (const zombie of zombies) {
+      if (zombie.laneno === this.laneno && this.x >= zombie.x) {
+        zombie.hit();
+        this.destroy();
+      }
+    }
     this.update();
   }
 }
