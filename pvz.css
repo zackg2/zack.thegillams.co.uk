@@ -17,5 +17,6 @@ html {
   top: 1vw;
   height: 6vw;
   width: 6vw;
-  background-color: green;
+  background-image: url("zombie.png");
+  background-size: 100% 100%;
 }

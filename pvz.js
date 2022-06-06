@@ -15,7 +15,10 @@ function tick() {
 function start() {
   lanes.push(...document.querySelectorAll(".lane"));
   for (let i = 0; i < 3; i++) {
-    zombies.push(new Zombie());
+    const zombie = new Zombie();
+    zombie.progress = -i * 3;
+    zombie.update();
+    zombies.push(zombie);
   }
   setInterval(tick, 1000 / TPS);
 }
@@ -23,7 +26,7 @@ function start() {
 class Zombie {
   lane = -1;
   speed = 100 / (60 * TPS);
-  progress = 5;
+  progress = 0;
   div = document.createElement("div");
 
   constructor() {
