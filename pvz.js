@@ -24,7 +24,7 @@ function tick() {
   }
   for (const zombie of zombies) {
     zombie.tick();
-    if (zombie.progress > 104) {
+    if (zombie.x < -4) {
       eatBrainz();
     }
   }
@@ -50,7 +50,7 @@ function start() {
 
   for (let i = 0; i < 3; i++) {
     const zombie = new Zombie();
-    zombie.progress = -i * 3;
+    zombie.x = 100 + i * 3;
     zombie.update();
     zombies.push(zombie);
   }
@@ -59,8 +59,8 @@ function start() {
 
 class Zombie {
   laneno = -1;
-  speed = 100 / (60 * TPS);
-  progress = 0;
+  speed = -100 / (60 * TPS);
+  x = 100;
   div = document.createElement("div");
 
   constructor() {
@@ -71,11 +71,11 @@ class Zombie {
   }
 
   update() {
-    this.div.style.left = `${100 - this.progress}%`;
+    this.div.style.left = `${this.x}%`;
   }
 
   tick() {
-    this.progress += this.speed;
+    this.x += this.speed;
     this.update();
   }
 }
@@ -148,23 +148,23 @@ class Turret {
 class Projectile {
   laneno = -1;
   speed = 300 / (60 * TPS);
-  progress = 0;
+  x = 0;
   div = document.createElement("div");
 
-  constructor(laneno, progress) {
+  constructor(laneno, x) {
     this.laneno = laneno;
-    this.progress = progress;
+    this.x = x;
     this.div.className = "projectile";
     this.update();
     lanes[this.laneno].appendChild(this.div);
   }
 
   update() {
-    this.div.style.left = `${this.progress}%`;
+    this.div.style.left = `${this.x}%`;
   }
 
   tick() {
-    this.progress += this.speed;
+    this.x += this.speed;
     this.update();
   }
 }
