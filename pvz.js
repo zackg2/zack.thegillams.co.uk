@@ -9,9 +9,17 @@ function rand(low, high) {
 function tick() {
   for (const zombie of zombies) {
     zombie.tick();
+    if (zombie.progress > 104) {
+      eatBrainz();
+    }
   }
 }
+function eatBrainz() {
+  clearInterval(ticker);
+  alert("the zombiezz have ate your brainz");
+}
 
+let ticker;
 function start() {
   lanes.push(...document.querySelectorAll(".lane"));
   for (let i = 0; i < 3; i++) {
@@ -20,7 +28,7 @@ function start() {
     zombie.update();
     zombies.push(zombie);
   }
-  setInterval(tick, 1000 / TPS);
+  ticker = setInterval(tick, 1000 / TPS);
 }
 
 class Zombie {
