@@ -2,6 +2,7 @@ const zombies = [];
 const lanes = [];
 const spaces = [];
 const projectiles = [];
+
 let credits = 20;
 const TPS = 10;
 
@@ -28,6 +29,40 @@ function tick() {
       eatBrainz();
     }
   }
+
+  if (currentWave < WAVES.length) {
+    const part = WAVES[currentWave].parts[currentPart];
+
+    for (const spawn of spawns) {
+      if (spawn.tick === partTick) {
+        const Klass = spawn.klass;
+        const zombie = new Klass();
+        zombie.update();
+        zombies.push(zombie);
+      }
+    }
+
+    /*
+const Klass=zombieCount.klass;
+const zombie=new Klass()
+zombie.update();
+zombies.push(zombie);
+*/
+
+    partTick += 1;
+    if (partTick > part.duration * TPS) {
+      partTick = 0;
+      currentPart += 1;
+      if (currentPart >= WAVES[currentWave].parts.length) {
+        currentPart = 0;
+        currentWave += 1;
+      }
+    }
+  } else {
+    if (zombies.length === 0) {
+      alert("THE ZOMBIEZ ARE GONE");
+    }
+  }
 }
 function eatBrainz() {
   clearInterval(ticker);
@@ -35,6 +70,10 @@ function eatBrainz() {
 }
 
 let ticker;
+let currentWave = 0;
+let currentPart = 0;
+let partTick = 0;
+let spawns = [];
 function start() {
   creditsel = document.getElementById("credits");
   lanes.push(...document.querySelectorAll(".lane"));
@@ -48,13 +87,27 @@ function start() {
     }
   }
 
-  for (let i = 0; i < 3; i++) {
-    const zombie = new Zombie();
-    zombie.x = 100 + i * 3;
-    zombie.update();
-    zombies.push(zombie);
-  }
+  currentWave = 0;
+  currentPart = 0;
+  partTick = 0;
+  startPart();
+
   ticker = setInterval(tick, 1000 / TPS);
+}
+
+function startPart() {
+  const part = WAVES[currentWave].parts[currentPart];
+  partTick = 0;
+  spawns = [];
+  const ticks = part.duration * TPS;
+
+  for (const zombieCount of part.zombies) {
+    for (let n = 0; n < zombieCount.count; n++) {
+      const tick = rand(0, ticks - 1);
+      const klass = zombieCount.klass;
+      spawns.push({ tick, klass });
+    }
+  }
 }
 
 class Zombie {
@@ -93,6 +146,10 @@ class Zombie {
     this.x += this.speed;
     this.update();
   }
+}
+
+class TVZombie extends Zombie {
+  speed = -50 / (60 * TPS);
 }
 
 class Space {
@@ -197,5 +254,44 @@ class Projectile {
     this.update();
   }
 }
+
+const WAVES = [
+  {
+    parts: [
+      {
+        duration: 20,
+        zombies: [
+          //normies
+          { klass: Zombie, count: 5 },
+        ],
+      },
+      {
+        duration: 20,
+        zombies: [
+          { klass: Zombie, count: 12 },
+          { klass: TVZombie, count: 1 },
+        ],
+      },
+    ],
+  },
+  {
+    parts: [
+      {
+        duration: 20,
+        zombies: [
+          { klass: Zombie, count: 21 },
+          { klass: TVZombie, count: 5 },
+        ],
+      },
+      {
+        duration: 20,
+        zombies: [
+          { klass: Zombie, count: 6 },
+          { klass: TVZombie, count: 5 },
+        ],
+      },
+    ],
+  },
+];
 
 start();

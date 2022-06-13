@@ -19,6 +19,7 @@ html {
   width: 6vw;
   background-image: url("zombie.png");
   background-size: 100% 100%;
+  transition: left 0.1s linear;
 }
 
 .space {
@@ -46,4 +47,5 @@ html {
   width: 2vw;
   background-image: url("zombie.png");
   background-size: 100% 100%;
+  transition: left 0.1s linear;
 }
