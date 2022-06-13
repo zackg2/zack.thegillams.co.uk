@@ -9,7 +9,7 @@ const TPS = 10;
 let creditsel;
 
 function rand(low, high) {
-  return low + Math.floor(Math.random() * (high - low));
+  return low + Math.floor(Math.random() * (high - low + 1));
 }
 
 function tick() {
@@ -214,7 +214,7 @@ class Turret {
 
   tick() {
     this.counter = this.counter + 1;
-    if (this.counter >= 70) {
+    if (this.counter >= 20) {
       this.counter = 0;
       this.fire();
     }
@@ -224,7 +224,7 @@ class Turret {
 
 class Projectile {
   laneno = -1;
-  speed = 300 / (60 * TPS);
+  speed = 1000 / (60 * TPS);
   x = 0;
   div = document.createElement("div");
 
