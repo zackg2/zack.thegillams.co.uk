@@ -42,13 +42,6 @@ function tick() {
       }
     }
 
-    /*
-const Klass=zombieCount.klass;
-const zombie=new Klass()
-zombie.update();
-zombies.push(zombie);
-*/
-
     partTick += 1;
     if (partTick > part.duration * TPS) {
       partTick = 0;
@@ -57,10 +50,16 @@ zombies.push(zombie);
         currentPart = 0;
         currentWave += 1;
       }
+      if (currentWave < WAVES.length) {
+        startPart();
+      }
     }
   } else {
     if (zombies.length === 0) {
-      alert("THE ZOMBIEZ ARE GONE");
+      clearInterval(ticker);
+      setTimeout(() => {
+        alert("THE ZOMBIEZ ARE GONE");
+      }, 0);
     }
   }
 }
@@ -149,7 +148,13 @@ class Zombie {
 }
 
 class TVZombie extends Zombie {
-  speed = -50 / (60 * TPS);
+  speed = -70 / (60 * TPS);
+  hp = 10;
+  constructor() {
+    super();
+
+    this.div.className = "zombie TVzombie";
+  }
 }
 
 class Space {
@@ -209,7 +214,7 @@ class Turret {
 
   tick() {
     this.counter = this.counter + 1;
-    if (this.counter >= 20) {
+    if (this.counter >= 70) {
       this.counter = 0;
       this.fire();
     }
@@ -259,10 +264,10 @@ const WAVES = [
   {
     parts: [
       {
-        duration: 20,
+        duration: 30,
         zombies: [
           //normies
-          { klass: Zombie, count: 5 },
+          { klass: Zombie, count: 3 },
         ],
       },
       {
