@@ -40,7 +40,7 @@ html {
   top: 0;
   height: 8vw;
   width: 8vw;
-  background-color: yellowgreen;
+  background-image: url("turret.png");
   background-size: 100% 100%;
 }
 
