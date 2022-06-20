@@ -7,6 +7,7 @@ let credits = 20;
 const TPS = 10;
 
 let creditsel;
+let popupel;
 
 function rand(low, high) {
   return low + Math.floor(Math.random() * (high - low + 1));
@@ -42,16 +43,23 @@ function tick() {
       }
     }
 
-    partTick += 1;
-    if (partTick > part.duration * TPS) {
-      partTick = 0;
-      currentPart += 1;
-      if (currentPart >= WAVES[currentWave].parts.length) {
+    if (currentPart < 0) {
+      if (zombies.length === 0) {
         currentPart = 0;
-        currentWave += 1;
+        popup(`wave ${currentWave + 1}`);
       }
-      if (currentWave < WAVES.length) {
-        startPart();
+    } else {
+      partTick += 1;
+      if (partTick > part.duration * TPS) {
+        partTick = 0;
+        currentPart += 1;
+        if (currentPart >= WAVES[currentWave].parts.length) {
+          currentPart = -1;
+          currentWave += 1;
+        }
+        if (currentWave < WAVES.length) {
+          startPart();
+        }
       }
     }
   } else {
@@ -75,6 +83,8 @@ let partTick = 0;
 let spawns = [];
 function start() {
   creditsel = document.getElementById("credits");
+  popupel = document.getElementById("popup");
+
   lanes.push(...document.querySelectorAll(".lane"));
 
   for (let laneno = 0; laneno < lanes.length; laneno++) {
@@ -85,6 +95,7 @@ function start() {
       spaces[laneno].push(space);
     }
   }
+  popup(`here they come`);
 
   currentWave = 0;
   currentPart = 0;
@@ -107,6 +118,10 @@ function startPart() {
       spawns.push({ tick, klass });
     }
   }
+}
+
+function popup(message) {
+  popupel.textContent = message;
 }
 
 class Zombie {
