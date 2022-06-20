@@ -3,7 +3,7 @@ const lanes = [];
 const spaces = [];
 const projectiles = [];
 
-let credits = 20;
+let credits = 50;
 const TPS = 10;
 
 let creditsel;
@@ -14,7 +14,7 @@ function rand(low, high) {
 }
 
 function tick() {
-  credits = credits + 0.1;
+  credits = credits + 0.01;
   creditsel.textContent = Math.floor(credits);
   for (const projectile of projectiles) {
     projectile.tick();
@@ -135,9 +135,9 @@ function popup(message, permanent = false) {
 
 class Zombie {
   laneno = -1;
-  speed = -100 / (60 * TPS);
+  speed = -90 / (60 * TPS);
   x = 100;
-  hp = 5;
+  hp = 7;
   div = document.createElement("div");
 
   constructor() {
@@ -166,14 +166,14 @@ class Zombie {
   }
 
   tick() {
-    this.x += this.speed;
+    this.x = this.x + this.speed;
     this.update();
   }
 }
 
 class TVZombie extends Zombie {
-  speed = -70 / (60 * TPS);
-  hp = 10;
+  speed = -45 / (60 * TPS);
+  hp = 14;
   constructor() {
     super();
 
@@ -238,7 +238,7 @@ class Turret {
 
   tick() {
     this.counter = this.counter + 1;
-    if (this.counter >= 20) {
+    if (this.counter >= 25) {
       this.counter = 0;
       this.fire();
     }
@@ -300,7 +300,7 @@ const WAVES = [
         ],
       },
       {
-        duration: 20,
+        duration: 60,
         zombies: [
           { klass: Zombie, count: 12 },
           { klass: TVZombie, count: 1 },
