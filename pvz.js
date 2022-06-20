@@ -65,15 +65,14 @@ function tick() {
   } else {
     if (zombies.length === 0) {
       clearInterval(ticker);
-      setTimeout(() => {
-        alert("THE ZOMBIEZ ARE GONE");
-      }, 0);
+
+      popup("THE ZOMBIEZ ARE GONE", true);
     }
   }
 }
 function eatBrainz() {
   clearInterval(ticker);
-  alert("the zombiezz have ate your brainz");
+  popup("the zombiezz have ate your brainz", true);
 }
 
 let ticker;
@@ -120,12 +119,18 @@ function startPart() {
   }
 }
 
-function popup(message) {
+function popup(message, permanent = false) {
+  // displays message
   popupel.textContent = message;
+  // makes text opaque
   popupel.style.opacity = 1;
-  setTimeout(() => {
-    popupel.style.opacity = 0;
-  }, 5000);
+
+  if (!permanent) {
+    // after 5seconds the text will become transparent
+    setTimeout(() => {
+      popupel.style.opacity = 0;
+    }, 5000);
+  }
 }
 
 class Zombie {
