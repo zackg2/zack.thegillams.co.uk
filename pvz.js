@@ -122,6 +122,10 @@ function startPart() {
 
 function popup(message) {
   popupel.textContent = message;
+  popupel.style.opacity = 1;
+  setTimeout(() => {
+    popupel.style.opacity = 0;
+  }, 5000);
 }
 
 class Zombie {
@@ -314,4 +318,4 @@ const WAVES = [
   },
 ];
 
-start();
+setTimeout(start, 0);

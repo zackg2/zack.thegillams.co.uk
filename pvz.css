@@ -53,3 +53,8 @@ html {
   background-size: 100% 100%;
   transition: left 0.1s linear;
 }
+
+#popup {
+  opacity: 0;
+  transition: opacity 2s linear;
+}
