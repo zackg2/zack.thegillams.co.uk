@@ -268,12 +268,17 @@ class Projectile {
   }
 
   tick() {
-    this.x += this.speed;
+    this.x = this.x + this.speed;
     for (const zombie of zombies) {
       if (zombie.laneno === this.laneno && this.x >= zombie.x) {
         zombie.hit();
         this.destroy();
+        return;
       }
+    }
+    if (this.x > 100) {
+      this.destroy();
+      return;
     }
     this.update();
   }
