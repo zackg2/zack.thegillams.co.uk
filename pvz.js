@@ -210,9 +210,21 @@ class Space {
     }
     */
     const menu = document.createElement("div");
-    menu.innerHTML = "jeff";
+    menu.innerHTML = "";
     this.div.appendChild(menu);
     menu.className = "turretPopup";
+    {
+      const button = document.createElement("button");
+      menu.appendChild(button);
+      button.innerHTML = "";
+      button.className = "button";
+    }
+    {
+      const button = document.createElement("button");
+      menu.appendChild(button);
+      button.innerHTML = "";
+      button.className = "button2";
+    }
   }
 
   tick() {
