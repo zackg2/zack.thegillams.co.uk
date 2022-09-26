@@ -44,6 +44,10 @@ html {
   background-size: 100% 100%;
 }
 
+.turret.CCC {
+  filter: hue-rotate(180deg);
+}
+
 .projectile {
   position: absolute;
   top: 3vw;
@@ -57,4 +61,15 @@ html {
 #popup {
   opacity: 0;
   transition: opacity 2s linear;
+}
+
+.turretPopup {
+  background-color: whitesmoke;
+  z-index: 1;
+  position: absolute;
+  top: 8.9vw;
+  border-radius: 2vw;
+  padding: 3vw;
+  border: 1vw solid black;
+  box-shadow: 2vw 2vw 7vw midnightblue;
 }

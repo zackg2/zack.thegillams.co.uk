@@ -8,6 +8,11 @@ const TPS = 10;
 
 let creditsel;
 let popupel;
+let ticker;
+let currentWave = 0;
+let currentPart = 0;
+let partTick = 0;
+let spawns = [];
 
 function rand(low, high) {
   return low + Math.floor(Math.random() * (high - low + 1));
@@ -72,14 +77,9 @@ function tick() {
 }
 function eatBrainz() {
   clearInterval(ticker);
-  popup("the zombiezz have ate your brainz", true);
+  popup("the zombiez have ate your brainz", true);
 }
 
-let ticker;
-let currentWave = 0;
-let currentPart = 0;
-let partTick = 0;
-let spawns = [];
 function start() {
   creditsel = document.getElementById("credits");
   popupel = document.getElementById("popup");
@@ -200,10 +200,19 @@ class Space {
   update() {}
 
   clicked() {
+    /*
     if (!this.turret && credits >= 10) {
       credits -= 10;
       this.turret = new Turret(this);
+    } else if (this.turret) {
+      this.turret.destroy();
+      this.turret = new CCC(this);
     }
+    */
+    const menu = document.createElement("div");
+    menu.innerHTML = "jeff";
+    this.div.appendChild(menu);
+    menu.className = "turretPopup";
   }
 
   tick() {
@@ -236,6 +245,10 @@ class Turret {
     projectiles.push(projectile);
   }
 
+  destroy() {
+    this.div.parentElement.removeChild(this.div);
+  }
+
   tick() {
     this.counter = this.counter + 1;
     if (this.counter >= 25) {
@@ -243,6 +256,16 @@ class Turret {
       this.fire();
     }
     this.update();
+  }
+}
+
+class CCC extends Turret {
+  speed = -45 / (60 * TPS);
+  hp = 14;
+  constructor(space) {
+    super(space);
+
+    this.div.className = "turret CCC";
   }
 }
 
