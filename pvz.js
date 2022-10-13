@@ -14,6 +14,13 @@ let currentPart = 0;
 let partTick = 0;
 let spawns = [];
 
+const menu = document.createElement("div");
+
+function hidemenu() {
+  menu.parentElement.removeChild(menu);
+}
+window.addEventListener("click", hidemenu, false);
+
 function rand(low, high) {
   return low + Math.floor(Math.random() * (high - low + 1));
 }
@@ -199,7 +206,8 @@ class Space {
 
   update() {}
 
-  clicked() {
+  clicked(e) {
+    e.stopPropagation();
     /*
     if (!this.turret && credits >= 10) {
       credits -= 10;
@@ -209,7 +217,6 @@ class Space {
       this.turret = new CCC(this);
     }
     */
-    const menu = document.createElement("div");
     menu.innerHTML = "";
     this.div.appendChild(menu);
     menu.className = "turretPopup";
