@@ -220,17 +220,52 @@ class Space {
     menu.innerHTML = "";
     this.div.appendChild(menu);
     menu.className = "turretPopup";
-    {
-      const button = document.createElement("button");
-      menu.appendChild(button);
-      button.innerHTML = "";
-      button.className = "button";
-    }
-    {
-      const button = document.createElement("button");
-      menu.appendChild(button);
-      button.innerHTML = "";
-      button.className = "button2";
+    if (this.turret) {
+      {
+        const button = document.createElement("button");
+        menu.appendChild(button);
+        button.innerHTML = "x";
+        button.className = "";
+        button.onclick = (e) => {
+          e.stopPropagation();
+          credits += this.turret.cost / 2;
+          this.turret.destroy();
+          this.turret = null;
+          hidemenu();
+        };
+      }
+    } else {
+      {
+        const cost = 10;
+        const button = document.createElement("button");
+        button.disabled = credits < cost;
+        menu.appendChild(button);
+        button.innerHTML = "";
+        button.className = "button";
+        button.onclick = (e) => {
+          e.stopPropagation();
+          credits -= cost;
+          this.turret = new Turret(this);
+          this.turret.cost = cost;
+          hidemenu();
+        };
+      }
+      {
+        const cost = 20;
+
+        const button = document.createElement("button");
+        button.disabled = credits < cost;
+        menu.appendChild(button);
+        button.innerHTML = "";
+        button.className = "button2";
+        button.onclick = (e) => {
+          e.stopPropagation();
+          credits -= cost;
+          this.turret = new CCC(this);
+          this.turret.cost = cost;
+          hidemenu();
+        };
+      }
     }
   }
 
