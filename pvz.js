@@ -170,6 +170,7 @@ class Zombie {
       zombies.splice(pos, 1);
     }
     this.div.parentElement.removeChild(this.div);
+    credits += 2;
   }
 
   tick() {

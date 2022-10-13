@@ -91,3 +91,8 @@ html {
 .button2 {
   filter: hue-rotate(180deg);
 }
+
+.button:disabled,
+.button2:disabled {
+  filter: grayscale(100%);
+}
