@@ -7,7 +7,7 @@ function start() {
   <button onclick="play()"> PLAY!</button>`;
 }
 function play() {
-  countdown(2);
+  countdown(5);
 }
 
 let correctCount, incorrectCount;
@@ -45,6 +45,8 @@ ${question}
 <button type="submit">check</button>
 </form>
     `;
+  const answer = document.getElementById("answer");
+  answer.focus();
 }
 
 function checkAnswer(e) {
@@ -54,15 +56,16 @@ function checkAnswer(e) {
   const correctAnswer = divide ? a : c;
   const isCorrect = guess === correctAnswer;
   if (isCorrect) {
-    incorrectCount = incorrectCount + 1;
-  } else {
     correctCount = correctCount + 1;
+  } else {
+    incorrectCount = incorrectCount + 1;
   }
   guu();
 }
 function endGame() {
   main.innerHTML = `
-  <p>${correctCount} ${incorrectCount}</p>
+  <h1>here is your score</h1>
+  <p>wrong:${correctCount} correct:${incorrectCount}</p>
 
     `;
 }
