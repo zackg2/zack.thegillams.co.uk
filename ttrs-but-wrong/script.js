@@ -16,6 +16,7 @@ function countdown(second) {
   if (second <= 0) {
     correctCount = 0;
     incorrectCount = 0;
+    setTimeout(endGame, 60_000);
     guu();
     return;
   }
@@ -58,4 +59,10 @@ function checkAnswer(e) {
     correctCount = correctCount + 1;
   }
   guu();
+}
+function endGame() {
+  main.innerHTML = `
+  <p>${correctCount} ${incorrectCount}</p>
+
+    `;
 }
