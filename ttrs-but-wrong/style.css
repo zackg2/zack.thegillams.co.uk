@@ -1,0 +1,65 @@
+html,
+body {
+  background-color: crimson;
+  padding: 0;
+  margin: 0;
+  outline: 0;
+}
+.centre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#start {
+  height: 36%;
+  width: 77%;
+  font-size: 28vh;
+  border-width: 0;
+  background-color: lightslategray;
+  border-radius: 50px;
+}
+
+.countdown {
+  height: 36%;
+  width: 77%;
+  font-size: 28vh;
+  text-align: center;
+}
+
+.correct,
+.incorrect {
+  font-size: 2em;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  padding: 1em;
+  border: 4px solid white;
+  border-radius: 20px;
+}
+
+.correct {
+  background-color: red;
+  transform: rotate(-15deg);
+}
+
+.incorrect {
+  background-color: darkgreen;
+  transform: rotate(20deg);
+}
+
+.question {
+  margin: 20px;
+  color: aliceblue;
+}
+
+.summary {
+  color: aliceblue;
+  font-weight: bolder;
+}
+.summary h1 {
+  margin-bottom: 2em;
+}

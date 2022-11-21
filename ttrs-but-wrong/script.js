@@ -4,7 +4,7 @@ let main;
 function start() {
   main = document.getElementById("main");
   main.innerHTML = `
-  <button onclick="play()"> PLAY!</button>`;
+  <div class="centre"><button onclick="play()" id="start"> PLAY!</button></div>`;
 }
 function play() {
   countdown(5);
@@ -21,7 +21,7 @@ function countdown(second) {
     return;
   }
   main.innerHTML = `
-  <div>${second}</div>`;
+ <div class="centre"> <div class="countdown">${second}</div> </div>`;
   setTimeout(() => {
     countdown(second - 1);
   }, 1000);
@@ -38,13 +38,18 @@ function guu() {
   const question = divide ? `${c} &divide; ${b} = ?` : `${a} &times; ${b} = ?`;
 
   main.innerHTML = `
-  <p>${correctCount} ${incorrectCount}</p>
-${question}
-<form onsubmit="checkAnswer(event)">
-<input id="answer"/>
-<button type="submit">check</button>
-</form>
-    `;
+  <div class="centre"> 
+    <div class="bezos">
+      <div class="correct">${correctCount}</div>
+      <div class="incorrect">${incorrectCount}</div>
+    </div>
+    <div class="question">${question}</div>
+    <form onsubmit="checkAnswer(event)">
+      <input id="answer"/>
+      <button type="submit">check</button>
+    </form>
+  </div>
+`;
   const answer = document.getElementById("answer");
   answer.focus();
 }
@@ -64,8 +69,8 @@ function checkAnswer(e) {
 }
 function endGame() {
   main.innerHTML = `
-  <h1>here is your score</h1>
-  <p>wrong:${correctCount} correct:${incorrectCount}</p>
+  <div class="centre"><div class="summary"><h1>here is your score</h1>
+  <div class="correct">wrong: ${correctCount}</div> <div class="incorrect">correct: ${incorrectCount}</div></div></div>
 
     `;
 }
