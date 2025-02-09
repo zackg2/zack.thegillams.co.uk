@@ -146,12 +146,14 @@ class Zombie {
   x = 100;
   hp = 7;
   div = document.createElement("div");
+  lane = null;
 
   constructor() {
     this.laneno = rand(0, lanes.length - 1);
     this.div.className = "zombie";
     this.update();
-    lanes[this.laneno].appendChild(this.div);
+    this.lane = lanes[this.laneno];
+    this.lane.appendChild(this.div);
   }
 
   update() {
@@ -176,6 +178,10 @@ class Zombie {
   tick() {
     this.x = this.x + this.speed;
     this.update();
+  }
+
+  hitbox() {
+    return { laneno: this.laneno, x: this.x, w: 7 };
   }
 }
 
@@ -276,6 +282,10 @@ class Space {
       this.turret.tick();
     }
   }
+
+  hitbox() {
+    return { laneno: this.laneno, x: this.x, w: 10 };
+  }
 }
 
 class Turret {
@@ -311,6 +321,9 @@ class Turret {
       this.fire();
     }
     this.update();
+  }
+  hitbox() {
+    return { laneno: this.laneno, x: this.spaceno * 10, w: 6 };
   }
 }
 
@@ -353,7 +366,8 @@ class Projectile {
   tick() {
     this.x = this.x + this.speed;
     for (const zombie of zombies) {
-      if (zombie.laneno === this.laneno && this.x >= zombie.x) {
+      //if (zombie.laneno === this.laneno && this.x >= zombie.x) {
+      if (hitboxOverlaps(zombie.hitbox(), this.hitbox())) {
         zombie.hit();
         this.destroy();
         return;
@@ -365,6 +379,17 @@ class Projectile {
     }
     this.update();
   }
+  hitbox() {
+    return { laneno: this.laneno, x: this.x, w: 2 };
+  }
+}
+
+function hitboxOverlaps(a, b) {
+  if (a.laneno !== b.laneno) return false;
+  const [left, right] = a.x > b.x ? [b, a] : [a, b];
+  const end = left.x + left.w;
+  if (right.x < end) return true;
+  else return false;
 }
 
 const WAVES = [
