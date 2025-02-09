@@ -1,6 +1,12 @@
+// @ts-check
+
+/** @type {Zombie[]} */
 const zombies = [];
+/** @type {Element[]} */
 const lanes = [];
+/** @type {Space[][]} */
 const spaces = [];
+/** @type {Projectile[]} */
 const projectiles = [];
 
 let credits = 50;
@@ -17,7 +23,7 @@ let spawns = [];
 const menu = document.createElement("div");
 
 function hidemenu() {
-  menu.parentElement.removeChild(menu);
+  menu.parentElement?.removeChild(menu);
 }
 window.addEventListener("click", hidemenu, false);
 
@@ -146,7 +152,8 @@ class Zombie {
   x = 100;
   hp = 7;
   div = document.createElement("div");
-  lane = null;
+  /** @type {Element} */
+  lane;
 
   constructor() {
     this.laneno = rand(0, lanes.length - 1);
@@ -171,13 +178,21 @@ class Zombie {
     if (pos >= 0) {
       zombies.splice(pos, 1);
     }
-    this.div.parentElement.removeChild(this.div);
+    this.div.parentElement?.removeChild(this.div);
     credits += 2;
   }
 
   tick() {
-    this.x = this.x + this.speed;
-    this.update();
+    const targetSpace = spaces[this.laneno].find(
+      (space) =>
+        space.turret && hitboxOverlaps(space.turret.hitbox(), this.hitbox())
+    );
+    if (targetSpace) {
+      //space.turret.bite(this.damage);
+    } else {
+      this.x = this.x + this.speed;
+      this.update();
+    }
   }
 
   hitbox() {
@@ -199,6 +214,7 @@ class Space {
   laneno = -1;
   spaceno = -1;
   div = document.createElement("div");
+  /** @type {Turret|null} */
   turret = null;
 
   constructor(laneno, spaceno) {
@@ -235,8 +251,8 @@ class Space {
         button.className = "";
         button.onclick = (e) => {
           e.stopPropagation();
-          credits += this.turret.cost / 2;
-          this.turret.destroy();
+          credits += this.turret?.cost / 2;
+          this.turret?.destroy();
           this.turret = null;
           hidemenu();
         };
@@ -252,8 +268,7 @@ class Space {
         button.onclick = (e) => {
           e.stopPropagation();
           credits -= cost;
-          this.turret = new Turret(this);
-          this.turret.cost = cost;
+          this.turret = new Turret(this, cost);
           hidemenu();
         };
       }
@@ -284,19 +299,21 @@ class Space {
   }
 
   hitbox() {
-    return { laneno: this.laneno, x: this.x, w: 10 };
+    return { laneno: this.laneno, x: this.spaceno * 10, w: 10 };
   }
 }
 
 class Turret {
-  space = null;
+  space;
   counter = 0;
   div = document.createElement("div");
+  cost;
 
-  constructor(space) {
+  constructor(space, cost) {
     this.space = space;
     this.div.className = "turret";
     this.update();
+    this.cost = cost;
     this.space.div.appendChild(this.div);
   }
 
@@ -311,7 +328,7 @@ class Turret {
   }
 
   destroy() {
-    this.div.parentElement.removeChild(this.div);
+    this.div.parentElement?.removeChild(this.div);
   }
 
   tick() {
@@ -323,7 +340,7 @@ class Turret {
     this.update();
   }
   hitbox() {
-    return { laneno: this.laneno, x: this.spaceno * 10, w: 6 };
+    return { laneno: this.space.laneno, x: this.space.spaceno * 10, w: 6 };
   }
 }
 
@@ -360,7 +377,7 @@ class Projectile {
     if (pos >= 0) {
       projectiles.splice(pos, 1);
     }
-    this.div.parentElement.removeChild(this.div);
+    this.div.parentElement?.removeChild(this.div);
   }
 
   tick() {
