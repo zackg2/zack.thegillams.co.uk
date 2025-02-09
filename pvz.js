@@ -154,6 +154,7 @@ class Zombie {
   div = document.createElement("div");
   /** @type {Element} */
   lane;
+  damage = 0.1;
 
   constructor() {
     this.laneno = rand(0, lanes.length - 1);
@@ -188,7 +189,7 @@ class Zombie {
         space.turret && hitboxOverlaps(space.turret.hitbox(), this.hitbox())
     );
     if (targetSpace) {
-      //space.turret.bite(this.damage);
+      targetSpace.turret?.bitten(this.damage);
     } else {
       this.x = this.x + this.speed;
       this.update();
@@ -308,6 +309,13 @@ class Turret {
   counter = 0;
   div = document.createElement("div");
   cost;
+  hp = 10;
+  bitten(damage) {
+    this.hp -= damage;
+    if (this.hp <= 0) {
+      this.destroy();
+    }
+  }
 
   constructor(space, cost) {
     this.space = space;
@@ -328,6 +336,7 @@ class Turret {
   }
 
   destroy() {
+    this.space.turret = null;
     this.div.parentElement?.removeChild(this.div);
   }
 
