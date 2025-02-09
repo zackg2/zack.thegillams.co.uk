@@ -150,13 +150,14 @@ class Zombie {
   laneno = -1;
   speed = -90 / (60 * TPS);
   x = 100;
-  hp = 7;
+  maxHp = 7;
   div = document.createElement("div");
   /** @type {Element} */
   lane;
   damage = 0.1;
 
   constructor() {
+    this.hp = this.maxHp;
     this.laneno = rand(0, lanes.length - 1);
     this.div.className = "zombie";
     this.update();
@@ -171,6 +172,8 @@ class Zombie {
     this.hp = this.hp - 1;
     if (this.hp <= 0) {
       this.destroy();
+    } else {
+      this.div.style.opacity = String(this.hp / this.maxHp);
     }
   }
 
@@ -203,7 +206,8 @@ class Zombie {
 
 class TVZombie extends Zombie {
   speed = -45 / (60 * TPS);
-  hp = 14;
+  maxHp = 14;
+  damage = 0.2;
   constructor() {
     super();
 
@@ -309,15 +313,18 @@ class Turret {
   counter = 0;
   div = document.createElement("div");
   cost;
-  hp = 10;
+  maxHp = 10;
   bitten(damage) {
     this.hp -= damage;
     if (this.hp <= 0) {
       this.destroy();
+    } else {
+      this.div.style.opacity = String(this.hp / this.maxHp);
     }
   }
 
   constructor(space, cost) {
+    this.hp = this.maxHp;
     this.space = space;
     this.div.className = "turret";
     this.update();
@@ -355,7 +362,7 @@ class Turret {
 
 class CCC extends Turret {
   speed = -45 / (60 * TPS);
-  hp = 14;
+  maxHp = 14;
   constructor(space) {
     super(space);
 
