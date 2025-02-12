@@ -195,9 +195,6 @@ class Zombie extends Creature {
   update() {
     this.div.style.left = `${this.x}%`;
   }
-  hit() {
-    this.suffer(1);
-  }
 
   destroy() {
     super.destroy();
@@ -392,10 +389,11 @@ class Projectile {
   x = 0;
   div = document.createElement("div");
 
-  constructor(laneno, x) {
+  constructor(laneno, x, className = "bullet", damage = 1) {
+    this.damage = damage;
     this.laneno = laneno;
     this.x = x;
-    this.div.className = "projectile";
+    this.div.className = `projectile ${className}`;
     this.update();
     lanes[this.laneno].appendChild(this.div);
   }
@@ -417,7 +415,7 @@ class Projectile {
     for (const zombie of zombies) {
       //if (zombie.laneno === this.laneno && this.x >= zombie.x) {
       if (hitboxOverlaps(zombie.hitbox(), this.hitbox())) {
-        zombie.hit();
+        zombie.suffer(this.damage);
         this.destroy();
         return;
       }
