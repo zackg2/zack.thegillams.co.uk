@@ -50,7 +50,7 @@ html {
 
 .healthbarbackground {
   position: absolute;
-  top: 0;
+  top: -1vw;
   left: 0;
   height: 1vw;
   width: 8vw;
