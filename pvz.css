@@ -48,6 +48,24 @@ html {
   filter: hue-rotate(180deg);
 }
 
+.healthbarbackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1vw;
+  width: 8vw;
+  background-color: black;
+}
+
+.healthbar {
+  position: absolute;
+  top: 0.1vw;
+  left: 0.1vw;
+  height: 0.8vw;
+  width: 7.8vw;
+  background-color: #00ff0d;
+}
+
 .projectile {
   position: absolute;
   top: 3vw;

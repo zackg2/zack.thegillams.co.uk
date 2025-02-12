@@ -72,7 +72,7 @@ function tick() {
         partTick = 0;
         currentPart += 1;
         if (currentPart >= WAVES[currentWave].parts.length) {
-          currentPart = -1;
+          currentPart = 0;
           currentWave += 1;
         }
         if (currentWave < WAVES.length) {
@@ -146,17 +146,44 @@ function popup(message, permanent = false) {
   }
 }
 
-class Zombie {
+class Creature {
+  div = document.createElement("div");
+  healthbarDiv = document.createElement("div");
+  healthbarbackgroundDiv = document.createElement("div");
+  maxHp = 10;
+  constructor() {
+    this.hp = this.maxHp;
+    this.div.appendChild(this.healthbarbackgroundDiv);
+    this.healthbarbackgroundDiv.className = "healthbarbackground";
+    this.healthbarbackgroundDiv.appendChild(this.healthbarDiv);
+    this.healthbarDiv.className = "healthbar";
+  }
+  suffer(damage) {
+    this.hp -= damage;
+    if (this.hp <= 0) {
+      this.destroy();
+    } else {
+      //   this.div.style.opacity = String(this.hp / this.maxHp);
+      this.healthbarDiv.style.width = `${(this.hp / this.maxHp) * 7.8}vw`;
+    }
+  }
+  // heal(damage)
+  destroy() {
+    this.div.parentElement?.removeChild(this.div);
+  }
+}
+
+class Zombie extends Creature {
   laneno = -1;
   speed = -90 / (60 * TPS);
   x = 100;
   maxHp = 7;
-  div = document.createElement("div");
   /** @type {Element} */
   lane;
   damage = 0.1;
 
   constructor() {
+    super();
     this.hp = this.maxHp;
     this.laneno = rand(0, lanes.length - 1);
     this.div.className = "zombie";
@@ -169,15 +196,11 @@ class Zombie {
     this.div.style.left = `${this.x}%`;
   }
   hit() {
-    this.hp = this.hp - 1;
-    if (this.hp <= 0) {
-      this.destroy();
-    } else {
-      this.div.style.opacity = String(this.hp / this.maxHp);
-    }
+    this.suffer(1);
   }
 
   destroy() {
+    super.destroy();
     const pos = zombies.indexOf(this);
     if (pos >= 0) {
       zombies.splice(pos, 1);
@@ -192,7 +215,7 @@ class Zombie {
         space.turret && hitboxOverlaps(space.turret.hitbox(), this.hitbox())
     );
     if (targetSpace) {
-      targetSpace.turret?.bitten(this.damage);
+      targetSpace.turret?.suffer(this.damage);
     } else {
       this.x = this.x + this.speed;
       this.update();
@@ -205,11 +228,12 @@ class Zombie {
 }
 
 class TVZombie extends Zombie {
-  speed = -45 / (60 * TPS);
-  maxHp = 14;
-  damage = 0.2;
   constructor() {
     super();
+    this.speed = -45 / (60 * TPS);
+    this.maxHp = 14;
+    this.hp = this.maxHp;
+    this.damage = 0.2;
 
     this.div.className = "zombie TVzombie";
   }
@@ -240,10 +264,10 @@ class Space {
     if (!this.turret && credits >= 10) {
       credits -= 10;
       this.turret = new Turret(this);
-    } else if (this.turret) {
-      this.turret.destroy();
-      this.turret = new CCC(this);
-    }
+      } else if (this.turret) {
+        this.turret.destroy();
+        this.turret = new CCC(this);
+        }
     */
     menu.innerHTML = "";
     this.div.appendChild(menu);
@@ -308,25 +332,16 @@ class Space {
   }
 }
 
-class Turret {
+class Turret extends Creature {
   space;
   counter = 0;
-  div = document.createElement("div");
   cost;
-  maxHp = 10;
-  bitten(damage) {
-    this.hp -= damage;
-    if (this.hp <= 0) {
-      this.destroy();
-    } else {
-      this.div.style.opacity = String(this.hp / this.maxHp);
-    }
-  }
+  ticksPerShot = 25;
 
   constructor(space, cost) {
-    this.hp = this.maxHp;
-    this.space = space;
+    super();
     this.div.className = "turret";
+    this.space = space;
     this.update();
     this.cost = cost;
     this.space.div.appendChild(this.div);
@@ -343,13 +358,13 @@ class Turret {
   }
 
   destroy() {
+    super.destroy();
     this.space.turret = null;
-    this.div.parentElement?.removeChild(this.div);
   }
 
   tick() {
     this.counter = this.counter + 1;
-    if (this.counter >= 25) {
+    if (this.counter >= this.ticksPerShot) {
       this.counter = 0;
       this.fire();
     }
@@ -361,10 +376,11 @@ class Turret {
 }
 
 class CCC extends Turret {
-  speed = -45 / (60 * TPS);
-  maxHp = 14;
   constructor(space) {
     super(space);
+    this.ticksPerShot = 12;
+    this.maxHp = 14;
+    this.hp = this.maxHp;
 
     this.div.className = "turret CCC";
   }
