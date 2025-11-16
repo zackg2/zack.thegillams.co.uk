@@ -1,0 +1,7 @@
+name	id	hp	melee	damage	cooldown	cost	power	powerLanes	powerCooldown	powerValue
+turret	base	10	-	1		20	shoot	0	2.5	
+triple barrel	triple	10	-	1		50	shoot	-1,0,1	3	
+ballista	bow	14	-	5		30	shoot	0	5	
+factory	factory	10	-	-		10	makesMoney	0	2.5	5
+muchies	chomp	20	consume	99999999	10	50	-	0	-	-
+spikesTrap			hit	0.3	0	10	-	0		
