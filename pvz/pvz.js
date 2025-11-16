@@ -1,11 +1,10 @@
 // @ts-check
 
-import { Zombie } from "./zombie.js";
 import { TPS, rand } from "./common.js";
 import { state } from "./state.js";
 import { Space } from "./space.js";
-
-/** @import { Hitbox } from "./common.js" */
+import { popup } from "./popup.js";
+import { WAVES } from "./waves.js";
 
 function tick() {
   state.credits = state.credits + 0.01;
@@ -109,73 +108,5 @@ function startPart() {
     }
   }
 }
-
-function popup(message = "", permanent = false) {
-  if (!state.popupel) return;
-  // displays message
-  state.popupel.textContent = message;
-  // makes text opaque
-  state.popupel.style.opacity = "1";
-
-  if (!permanent) {
-    // after 5seconds the text will become transparent
-    setTimeout(() => {
-      if (!state.popupel) return;
-
-      state.popupel.style.opacity = "0";
-    }, 5000);
-  }
-}
-
-class TVZombie extends Zombie {
-  constructor() {
-    super();
-    this.speed = -45 / (60 * TPS);
-    this.maxHp = 14;
-    this.hp = this.maxHp;
-    this.damage = 0.2;
-
-    this.div.className = "zombie TVzombie";
-  }
-}
-
-const WAVES = [
-  {
-    parts: [
-      {
-        duration: 30,
-        zombies: [
-          //normies
-          { klass: Zombie, count: 3 },
-        ],
-      },
-      {
-        duration: 60,
-        zombies: [
-          { klass: Zombie, count: 12 },
-          { klass: TVZombie, count: 1 },
-        ],
-      },
-    ],
-  },
-  {
-    parts: [
-      {
-        duration: 20,
-        zombies: [
-          { klass: Zombie, count: 21 },
-          { klass: TVZombie, count: 5 },
-        ],
-      },
-      {
-        duration: 20,
-        zombies: [
-          { klass: Zombie, count: 6 },
-          { klass: TVZombie, count: 5 },
-        ],
-      },
-    ],
-  },
-];
 
 setTimeout(start, 0);
