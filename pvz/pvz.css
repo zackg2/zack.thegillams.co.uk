@@ -13,17 +13,39 @@ html {
   position: relative;
 }
 .zombie {
+  --size: 6vw;
   position: absolute;
   top: 1vw;
-  height: 6vw;
-  width: 6vw;
-  background-image: url("zombie.png");
-  background-size: 100% 100%;
+  height: var(--size);
+  width: var(--size);
+  background-image: url("sprite.png");
+  background-position: 0 0;
+  background-size: calc(var(--size) * 8) calc(var(--size) * 2);
+  background-repeat: no-repeat;
   transition: left 0.1s linear;
+  animation: walkZ 0.8s steps(2) infinite;
+}
+
+@keyframes walkZ {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: calc(-1 * var(--size) * 2) 0;
+  }
 }
 
 .TVzombie {
-  filter: hue-rotate(180deg);
+  background-position: calc(-1 * var(--size) * 4) 0;
+  animation: walkZ2 0.8s steps(2) infinite;
+}
+@keyframes walkZ2 {
+  from {
+    background-position: calc(-1 * var(--size) * 4) 0;
+  }
+  to {
+    background-position: calc(-1 * var(--size) * 6) 0;
+  }
 }
 
 .space {
