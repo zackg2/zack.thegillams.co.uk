@@ -23,14 +23,15 @@ h4 {
 ul {
   color: white;
 }
+div {
+  color: white;
+}
 .center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-div {
-  color: white;
-}
+
 .float-child {
   width: 20%;
   float: left;
