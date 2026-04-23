@@ -58,16 +58,19 @@ html {
 }
 
 .turret {
+  --size: 6vw;
   position: absolute;
-  top: 0;
-  height: 8vw;
-  width: 8vw;
-  background-image: url("turret.png");
-  background-size: 100% 100%;
+  top: 1vw;
+  height: var(--size);
+  width: var(--size);
+  background-image: url("sprite.png");
+  background-position: calc(var(--size) * -2) calc(var(--size) * -1);
+  background-size: calc(var(--size) * 8) calc(var(--size) * 2);
+  background-repeat: no-repeat;
 }
 
 .turret.CCC {
-  filter: hue-rotate(180deg);
+  background-position: 0 calc(var(--size) * -1);
 }
 
 .healthbarbackground {

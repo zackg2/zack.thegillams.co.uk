@@ -10,7 +10,7 @@ export function popup(message = "", permanent = false) {
   state.popupel.style.opacity = "1";
 
   if (!permanent) {
-    // after 5seconds the text will become transparent
+    // after 5 seconds the text will become transparent
     setTimeout(() => {
       if (!state.popupel) return;
 
