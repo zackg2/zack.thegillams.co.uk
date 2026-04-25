@@ -67,7 +67,7 @@ export class Space {
         button.disabled = state.credits < cost;
         menu.appendChild(button);
         button.innerHTML = "";
-        button.className = "button";
+        button.className = "button sprite spriteturret";
         button.onclick = (e) => {
           e.stopPropagation();
           state.credits -= cost;
@@ -84,7 +84,7 @@ export class Space {
         button.disabled = state.credits < cost;
         menu.appendChild(button);
         button.innerHTML = "";
-        button.className = "button2";
+        button.className = "button sprite spriteccc";
         button.onclick = (e) => {
           e.stopPropagation();
           state.credits -= cost;

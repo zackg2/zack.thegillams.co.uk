@@ -17,7 +17,7 @@ export class Zombie extends Creature {
     super();
     this.hp = this.maxHp;
     this.laneno = rand(0, state.lanes.length - 1);
-    this.div.className = "zombie";
+    this.div.className = "zombie sprite dave";
     this.update();
     this.lane = state.lanes[this.laneno];
     this.lane.appendChild(this.div);
@@ -40,7 +40,7 @@ export class Zombie extends Creature {
   tick() {
     const targetSpace = state.spaces[this.laneno].find(
       (space) =>
-        space.turret && hitboxOverlaps(space.turret.hitbox(), this.hitbox())
+        space.turret && hitboxOverlaps(space.turret.hitbox(), this.hitbox()),
     );
     if (targetSpace) {
       targetSpace.turret?.suffer(this.damage);

@@ -13,6 +13,6 @@ export class CCC extends Turret {
     this.maxHp = 14;
     this.hp = this.maxHp;
 
-    this.div.className = "turret CCC";
+    this.div.className = "turret sprite spriteccc";
   }
 }

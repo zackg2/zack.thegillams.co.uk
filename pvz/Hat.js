@@ -3,7 +3,7 @@
 import { TPS } from "./common.js";
 import { Zombie } from "./zombie.js";
 
-export class TVZombie extends Zombie {
+export class Hat extends Zombie {
   constructor() {
     super();
     this.speed = -45 / (60 * TPS);
@@ -11,6 +11,6 @@ export class TVZombie extends Zombie {
     this.hp = this.maxHp;
     this.damage = 0.2;
 
-    this.div.className = "zombie TVzombie";
+    this.div.className = "zombie sprite hat";
   }
 }

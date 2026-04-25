@@ -16,7 +16,7 @@ export class Turret extends Creature {
    */
   constructor(space) {
     super();
-    this.div.className = "turret";
+    this.div.className = "turret sprite spriteturret";
     this.space = space;
     this.update();
     this.space.div.appendChild(this.div);
@@ -27,7 +27,7 @@ export class Turret extends Creature {
   fire() {
     const projectile = new Projectile(
       this.space.laneno,
-      this.space.spaceno * 10 + 5
+      this.space.spaceno * 10 + 5,
     );
     state.projectiles.push(projectile);
   }
